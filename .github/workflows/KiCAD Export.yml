@@ -46,8 +46,20 @@ jobs:
         file: './DCDC-FusePCB.kicad_pcb'
         type: 'pcb_step'
 
-    - name: Upload Artifact
+    - name: Upload STEP Artifact
       uses: actions/upload-artifact@v3
       with:
         name: 'DCDC-FusePCB.step'
         path: './DCDC-FusePCB.step'
+
+    - name: Generate PDF
+      uses: actions-for-kicad/generate-kicad-files@v1.0
+      with:
+        file: './DCDC-FusePCB.kicad_sch'
+        type: 'schematic_pdf'
+
+    - name: Upload PDF Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: 'DCDC-FusePCB.pdf'
+        path: './DCDC-FusePCB.pdf'
