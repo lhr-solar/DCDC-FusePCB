@@ -18,7 +18,7 @@ jobs:
       uses: actions/cache@v4
       id: cache-kicad
       with:
-          path: "kicad"
+          path: "~/kicad"
           key: "7.0"
 
     - name: Install Kicad
@@ -26,13 +26,13 @@ jobs:
         CACHE_HIT: ${{steps.cache-kicad.outputs.cache-hit}}
       run: |
         if [[ "$CACHE_HIT" == 'true' ]]; then
-          sudo cp --verbose --force --recursive kicad/* /
+          sudo cp --verbose --force --recursive ~/kicad/* /
         else  
           sudo add-apt-repository ppa:kicad/kicad-7.0-releases
           sudo apt update
           sudo apt install kicad
           mkdir -p kicad
-          sudo dpkg -L kicad | while IFS= read -r f; do if test -f $f; then echo $f; fi; done | xargs cp --parents --target-directory kicad/
+          sudo dpkg -L kicad | while IFS= read -r f; do if test -f $f; then echo $f; fi; done | xargs cp --parents --target-directory ~/kicad/
         fi
         
     - name: View Dir
