@@ -14,11 +14,27 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+    - name: Cache KiCAD Install
+      uses: actions/cache@v4
+      id: cache-kicad
+      with:
+          path: "kicad"
+          key: "7.0"
+
     - name: Install Kicad
+      env:
+        CACHE_HIT: ${{steps.cache-kicad.outputs.cache-hit}}
       run: |
-        sudo add-apt-repository ppa:kicad/kicad-7.0-releases
-        sudo apt update
-        sudo apt install kicad
-    - name: View Install
+        if [[ "$CACHE_HIT" == 'true' ]]; then
+          sudo cp --verbose --force --recursive kicad/* /
+        else  
+          sudo add-apt-repository ppa:kicad/kicad-7.0-releases
+          sudo apt update
+          sudo apt install kicad
+          mkdir -p kicad
+          sudo dpkg -L kicad | while IFS= read -r f; do if test -f $f; then echo $f; fi; done | xargs cp --parents --target-directory kicad/
+        fi
+        
+    - name: View Dir
       run: |
         dpkg -L kicad
