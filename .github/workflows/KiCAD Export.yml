@@ -19,8 +19,12 @@ jobs:
         - name: Enumerate files
           id: file_lists
           run: |
+            PCB_FILES=()
+            while IFS= read -r -d '' file; do
+              PCB_FILES+=("$file")
+            done < <(find . -type f -name "*.kicad_pcb" -print0)
+            echo "::set-output name=pcb_files::${PCB_FILES[*]}"
             echo "PCB_FILES=$(find . -type f -name "*.kicad_pcb" -print)" >> "$GITHUB_OUTPUT"
-            echo "SCH_FILES=$(find . -type f -name "*.kicad_sch" -print)" >> "$GITHUB_OUTPUT"
 
         - name: print
           env:
