@@ -1,4 +1,4 @@
-name: KiCAD STEP Export
+name: Auto KiCAD Export
 
 on:
   push:
@@ -27,7 +27,17 @@ jobs:
 
         - name: Process PCB Files
           run: |
-            find . -type f -name "*.kicad_pcb" -print -exec process {kicad-cli -h} \;
+            for i in *.kicad_pcb; do
+              [ -f "$i" ] || break
+              echo "$i"
+            done
+            
+        - name: Process SCH Files
+          run: |
+            for i in *.kicad_sch; do
+              [ -f "$i" ] || break
+              echo "$i"
+            done
             
     
         
