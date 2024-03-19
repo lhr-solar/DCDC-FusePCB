@@ -17,16 +17,16 @@ jobs:
           uses: actions/checkout@v4
 
         - name: Enumerate files
-          id: pcb_list
+          id: file_lists
           run: |
             echo "PCB_FILES=$(find . -type f -name "*.kicad_pcb" -print)" >> "$GITHUB_OUTPUT"
             echo "SCH_FILES=$(find . -type f -name "*.kicad_sch" -print)" >> "$GITHUB_OUTPUT"
 
         - name: print
           env:
-            PCB_FILES: ${{ steps.pcb_list.PCB_FILES }}
+            PCB_FILES: ${{ steps.file_lists.PCB_FILES }}
           run: |
-            echo $PCB_FILES
+            echo "$PCB_FILES"
         
     
         
