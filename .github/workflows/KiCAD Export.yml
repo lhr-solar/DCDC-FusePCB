@@ -28,12 +28,12 @@ jobs:
         - name: Enumerate .kicad_pcb files
           id: pcb_list
           run: |
-            echo "::set-output name=PCB_FILES::$(find . -name '*.kicad_pcb' -print)"
+            echo "{PCB_FILES}={$(find . -name '*.kicad_pcb' -print)}" >> "$GITHUB_ENV"
 
         - name: Enumerate .kicad_sch files
           id: sch_list
           run: |
-            echo "::set-output name=SCH_FILES::$(find . -name '*.kicad_sch' -print)"
+            echo "{SCH_FILES}={$(find . -name '*.kicad_sch' -print)}" >> "$GITHUB_ENV"
         
     
         
