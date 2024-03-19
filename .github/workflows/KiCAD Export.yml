@@ -21,4 +21,5 @@ jobs:
     steps:
     - name: List files in the repository
       run: |
-          ls ./
+          echo "Contents of the current directory:"
+          ls -la
