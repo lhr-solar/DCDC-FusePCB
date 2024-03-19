@@ -12,10 +12,11 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-    container:
+    KiCAD-Docker-Container:
       runs-on: ubuntu-latest
       container: kicad/kicad:7.0
       steps:
-        - uses: actions/checkout@v3
+        - name: Checkout
+          uses: actions/checkout@v4
         - run: |
             kicad-cli -h
