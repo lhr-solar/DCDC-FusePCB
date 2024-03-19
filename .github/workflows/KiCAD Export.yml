@@ -21,5 +21,4 @@ jobs:
     steps:
     - name: List files in the repository
       run: |
-          echo "Contents of the current directory:"
-          ls -la
+        ls ${{ github.workspace }}
