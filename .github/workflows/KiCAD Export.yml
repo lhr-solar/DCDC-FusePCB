@@ -1,16 +1,11 @@
-# This is a basic workflow to help you get started with Actions
 name: KiCAD STEP Export
 
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push events but only for the "main" branch
   push:
     branches: [ "main" ]
 
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
     kicad-docker:
       runs-on: ubuntu-latest
@@ -20,5 +15,14 @@ jobs:
       steps:
         - name: Checkout
           uses: actions/checkout@v4
-        - run: |
-            kicad-cli -h
+          
+        - name: Clone Submodule
+          run: git clone https://github.com/lhr-solar/UTSVT-KiCadLibraries.git
+
+        - name: Checkout Submodule Branch
+          run: |
+            cd UTSVT-KiCadLibraries
+            git checkout DCDC-FusePCB
+            cd ..
+    
+        
