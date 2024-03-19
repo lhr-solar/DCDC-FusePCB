@@ -3416,7 +3416,7 @@
       (net 1 "Net-(J2-Pin_2)") (pinfunction "Pin_2") (pintype "passive") (tstamp 481bcdbe-c85a-4e09-843f-99120356de7e))
     (pad "2" thru_hole rect (at 7.49 0 90) (size 3.78 3.43) (drill 1.78) (layers "*.Cu" "*.Mask")
       (net 1 "Net-(J2-Pin_2)") (pinfunction "Pin_2") (pintype "passive") (tstamp 5a9b242a-aa29-4c49-aaf8-c42348d73979))
-    (model "${KIPRJMOD}/common/utsvt3d/connectors.3dshapes/MolexPowerConnSabre.stp"
+    (model "${KIPRJMOD}/UTSVT-KiCadLibraries/utsvt3d/connectors.3dshapes/MolexPowerConnSabre1x2.stp"
       (offset (xyz 0 0 0))
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
@@ -3506,7 +3506,7 @@
       (net 1 "Net-(J2-Pin_2)") (pintype "passive") (tstamp 55fc91d2-db7f-4b06-a276-efb77eacd22d))
     (pad "2" thru_hole circle (at 24.13 0) (size 1.905 1.905) (drill 1.397) (layers "*.Cu" "*.Mask")
       (net 2 "Net-(J1-Pin_2)") (pintype "passive") (tstamp 93d221ce-8c3d-4f18-9b95-2acf9a650453))
-    (model "${KIPRJMOD}/common/utsvt3d/misc.3dshapes/05200101Z.stp"
+    (model "${KIPRJMOD}/UTSVT-KiCadLibraries/utsvt3d/misc.3dshapes/05200101Z.stp"
       (offset (xyz 18 0 -4.5))
       (scale (xyz 1 1 1))
       (rotate (xyz -90 0 0))
@@ -3598,7 +3598,7 @@
       (net 2 "Net-(J1-Pin_2)") (pinfunction "Pin_2") (pintype "passive") (tstamp cd94319a-0062-45d8-8cc4-12b820061191))
     (pad "2" thru_hole rect (at 7.49 0 90) (size 3.78 3.43) (drill 1.78) (layers "*.Cu" "*.Mask")
       (net 2 "Net-(J1-Pin_2)") (pinfunction "Pin_2") (pintype "passive") (tstamp fbe7722a-37bb-4b25-9183-515f12eb8b1e))
-    (model "${KIPRJMOD}/common/utsvt3d/connectors.3dshapes/MolexPowerConnSabre.stp"
+    (model "${KIPRJMOD}/UTSVT-KiCadLibraries/utsvt3d/connectors.3dshapes/MolexPowerConnSabre1x2.stp"
       (offset (xyz 0 0 0))
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
