@@ -19,8 +19,8 @@ jobs:
         - name: Enumerate files
           id: pcb_list
           run: |
-            echo "{PCB_FILES}={$(find . -type f -name "*.kicad_pcb" -print)}" >> "$GITHUB_OUTPUT"
-            echo "{SCH_FILES}={$(find . -type f -name "*.kicad_sch" -print)}" >> "$GITHUB_OUTPUT"
+            echo "PCB_FILES=$(find . -type f -name "*.kicad_pcb" -print)" >> "$GITHUB_OUTPUT"
+            echo "SCH_FILES=$(find . -type f -name "*.kicad_sch" -print)" >> "$GITHUB_OUTPUT"
 
         - name: print
           env:
