@@ -1,3 +1,6 @@
 [submodule "UTSVT-KiCadLibraries"]
 	path = UTSVT-KiCadLibraries
 	url = https://github.com/lhr-solar/UTSVT-KiCadLibraries
+[submodule "DCDC-FusePCB"]
+	path = DCDC-FusePCB
+	url = git@github.com:lhr-solar/DCDC-FusePCB.git
