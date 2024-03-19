@@ -16,16 +16,17 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v4
 
-        - name: Enumerate .kicad_pcb files
+        - name: Enumerate files
           id: pcb_list
           run: |
-            find . -type f -name "*.kicad_pcb" -print
-            echo "{PCB_FILES}={$(find . -name '*.kicad_pcb' -print)}" >> "$GITHUB_ENV"
+            echo "{PCB_FILES}={$(find . -type f -name "*.kicad_pcb" -print)}" >> "$GITHUB_OUTPUT"
+            echo "{SCH_FILES}={$(find . -type f -name "*.kicad_sch" -print)}" >> "$GITHUB_OUTPUT"
 
-        - name: Enumerate .kicad_sch files
-          id: sch_list
+        - name: print
+          env:
+            PCB_FILES: ${{ steps.pcb_list.PCB_FILES }}
           run: |
-            echo "{SCH_FILES}={$(find . -name '*.kicad_sch' -print)}" >> "$GITHUB_ENV"
+            echo PCB_FILES
         
     
         
