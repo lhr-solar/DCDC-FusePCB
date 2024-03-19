@@ -27,15 +27,7 @@ jobs:
 
         - name: Process PCB Files
           run: |
-            find . -type f -name "*.kicad_pcb" -print | while read -d $'\0' file
-            do
-                kicad-cli -h
-            done
+            find . -type f -name "*.kicad_pcb" -print -exec process {kicad-cli -h} \;
             
-        - name: Process SCH Files
-          run: |
-            find . -type f -name "*.kicad_sch" -print | while read -d $'\0' file
-            do
-                kicad-cli -h
-            done
+    
         
