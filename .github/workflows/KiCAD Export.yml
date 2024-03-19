@@ -29,7 +29,9 @@ jobs:
           run: |
             for i in *.kicad_pcb; do
               [ -f "$i" ] || break
-              echo "$i"
+              file_name="$(echo $i | rev | cut -d '/' -f 1 | rev | cut -d '.' -f 1)"
+              kicad-cli pcb export step --subst-models "$i"
+              # TODO: Upload Artifacts
             done
             
         - name: Process SCH Files
