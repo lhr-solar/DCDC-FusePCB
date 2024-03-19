@@ -31,4 +31,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: 'DCDC-FusePCB.step'
-        path: './model.step'
+        path: './DCDC-FusePCB.step'
