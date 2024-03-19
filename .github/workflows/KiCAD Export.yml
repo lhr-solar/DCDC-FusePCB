@@ -16,4 +16,6 @@ jobs:
       runs-on: ubuntu-latest
       container: kicad/kicad:7.0
       steps:
-        
+        - uses: actions/checkout@v3
+        - run: |
+            kicad-cli -h
