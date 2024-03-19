@@ -26,7 +26,7 @@ jobs:
           env:
             PCB_FILES: ${{ steps.pcb_list.PCB_FILES }}
           run: |
-            echo PCB_FILES
+            echo $PCB_FILES
         
     
         
