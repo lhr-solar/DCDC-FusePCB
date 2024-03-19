@@ -19,15 +19,6 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     - uses: actions/checkout@v4
-    
-    - name: Clone Submodule
-      run: git clone https://github.com/lhr-solar/UTSVT-KiCadLibraries.git
-
-    - name: Checkout Submodule Branch
-      run: |
-        cd UTSVT-KiCadLibraries
-        git checkout DCDC-FusePCB
-        cd ..
 
     - name: Cache KiCAD Install
       uses: actions/cache@v4
@@ -43,7 +34,7 @@ jobs:
         if [[ "$CACHE_HIT" == 'true' ]]; then
           sudo cp --verbose --force --recursive ~/kicad/* /
         else  
-          sudo add-apt-repository ppa:kicad/kicad-7.0.11-releases
+          sudo add-apt-repository ppa:kicad/kicad-7.0-releases
           sudo apt update
           sudo apt install kicad
           mkdir -p ~/kicad
