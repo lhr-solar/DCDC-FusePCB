@@ -24,9 +24,11 @@ jobs:
 
         - name: print
           env:
-            PCB_FILES: ${{ steps.file_lists.PCB_FILES }}
+            PCB_FILES: ${{ steps.file_lists.outputs.PCB_FILES }}
+            SCH_FILES: ${{ steps.file_lists.outputs.SCH_FILES }}
           run: |
             echo "$PCB_FILES"
+            echo "$SCH_FILES"
         
     
         
