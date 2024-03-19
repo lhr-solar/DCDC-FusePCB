@@ -15,7 +15,7 @@ jobs:
     kicad-docker:
       runs-on: ubuntu-latest
       container:
-        image: kicad:7.0
+        image: kicad/kicad:7.0
       steps:
         - name: Checkout
           uses: actions/checkout@v4
