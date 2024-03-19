@@ -31,4 +31,4 @@ jobs:
     - name: List Files in Submodule
       run: |
         echo "Contents of the submodule directory:"
-        ls -la UTSVT-KiCadLibraries
+        ls -la UTSVT-KiCadLibraries/UTSVT_Passive.pretty
