@@ -5,16 +5,17 @@ name: KiCAD STEP Export
 on:
   # Triggers the workflow on push events but only for the "main" branch
   push:
-    #branches: [ "main" ]
+    branches: [ "main" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-    KiCAD-Docker-Container:
+    kicad-docker:
       runs-on: ubuntu-latest
-      container: kicad/kicad:7.0
+      container:
+        image: kicad:7.0
       steps:
         - name: Checkout
           uses: actions/checkout@v4
