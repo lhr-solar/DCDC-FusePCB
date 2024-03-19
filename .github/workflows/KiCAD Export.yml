@@ -16,23 +16,26 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v4
 
-        - name: Enumerate files
-          id: file_lists
-          run: |
-            PCB_FILES=()
-            while IFS= read -r -d '' file; do
-              PCB_FILES+=("$file")
-            done < <(find . -type f -name "*.kicad_pcb" -print0)
-            echo "::set-output name=pcb_files::${PCB_FILES[*]}"
-            echo "PCB_FILES=$(find . -type f -name "*.kicad_pcb" -print)" >> "$GITHUB_OUTPUT"
+        - name: Clone Submodule
+          run: git clone https://github.com/lhr-solar/UTSVT-KiCadLibraries.git
 
-        - name: print
-          env:
-            PCB_FILES: ${{ steps.file_lists.outputs.PCB_FILES }}
-            SCH_FILES: ${{ steps.file_lists.outputs.SCH_FILES }}
+        - name: Checkout Submodule Branch
           run: |
-            echo "$PCB_FILES"
-            echo "$SCH_FILES"
-        
-    
+            cd UTSVT-KiCadLibraries
+            git checkout DCDC-FusePCB
+            cd ..
+
+        - name: Process PCB Files
+          run: |
+            find . -type f -name "*.kicad_pcb" -print | while read -d $'\0' file
+            do
+                kicad-cli -h
+            done
+            
+        - name: Process SCH Files
+          run: |
+            find . -type f -name "*.kicad_sch" -print | while read -d $'\0' file
+            do
+                kicad-cli -h
+            done
         
