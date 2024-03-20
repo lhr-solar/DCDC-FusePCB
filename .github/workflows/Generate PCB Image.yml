@@ -1,0 +1,34 @@
+name: Convert STEP to PNG
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install OCCT dependencies
+      run: sudo apt-get update && sudo apt-get install -y libocct-*
+
+    - name: Install FreeCAD
+      run: sudo apt-get install -y freecad
+
+    - name: Convert STEP to PNG
+      run: |
+        # Assuming your STEP file is named model.step
+        freecadcmd -c 'import Import; Import.open("model.step"); Gui.activeDocument().activeView().saveImage("model.png", 1920, 1080, "Transparent")'
+
+    - name: Upload PNG artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: model-png
+        path: model.png
