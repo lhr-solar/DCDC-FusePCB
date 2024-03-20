@@ -25,7 +25,14 @@ jobs:
             cd UTSVT-KiCadLibraries
             git checkout DCDC-FusePCB
             cd ..
-
+        
+        - name: Make docs/ directory
+        - run: |
+            directory="docs"
+            if [ ! -d "$directory" ]; then
+                mkdir "$directory"
+            fi
+        
         - name: Process PCB Files
           run: |
             for i in *.kicad_pcb; do
