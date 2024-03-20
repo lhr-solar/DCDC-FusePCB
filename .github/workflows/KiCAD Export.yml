@@ -30,9 +30,8 @@ jobs:
           run: |
             for i in *.kicad_pcb; do
               [ -f "$i" ] || break
-              file_name="$(echo $i | rev | cut -d '/' -f 1 | rev | cut -d '.' -f 1)"
-              kicad-cli pcb export step --subst-models "$i"
-            
+              BASE_NAME="$(echo $i | rev | cut -d '/' -f 1 | rev | cut -d '.' -f 1)"
+              kicad-cli pcb export step --subst-models -o "docs/$BASE_NAME.step" "$i"
             done
             
         - name: Process SCH Files
@@ -42,7 +41,14 @@ jobs:
               echo "$i"
             done
             
-
+        - name: Push Changes
+          run: |
+            git config --global user.name "github-actions[bot]"
+            git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git config --global --add safe.directory '*'
+            git add .
+            git commit -m "Updated Exports"
+            git push
             
     
         
