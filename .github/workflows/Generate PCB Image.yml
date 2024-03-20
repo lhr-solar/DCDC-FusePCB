@@ -4,25 +4,24 @@ on:
   workflow_dispatch:
 
 jobs:
-  convert:
+  freeCAD-docker:
     runs-on: ubuntu-latest
 
+    container:
+      image: linuxserver/freecad
+      options: --user root
+
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Install OCCT dependencies
-      run: sudo apt-get update && sudo apt-get install -y libocct-*
-
-    - name: Install FreeCAD
-      run: sudo apt-get install -y freecad
-
-    - name: Convert STEP to PNG
-      run: |
-        freecadcmd -c 'import Import; Import.open("docs/DCDC-FusePCB.step"); Gui.activeDocument().activeView().saveImage("model.png", 1920, 1080, "Transparent")'
-
-    - name: Upload PNG artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: model-png
-        path: model.png
+      - name: Convert STEP to PNG
+        run: |
+          cd docs
+          freecadcmd -c 'import Import; Import.open("DCDC-FusePCB.step"); Gui.activeDocument().activeView().saveImage("model.png", 1920, 1080, "Transparent")'
+  
+      - name: Upload PNG artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: model-png
+          path: model.png
