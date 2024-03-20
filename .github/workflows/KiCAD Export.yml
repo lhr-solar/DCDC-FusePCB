@@ -26,8 +26,13 @@ jobs:
             git checkout DCDC-FusePCB
             cd ..
         
-
-        
+        - name: Make docs directory
+        - run: |
+            DIR="docs"
+            if [ ! -d "$DIR" ]; then
+                mkdir "$DIR"
+            fi
+            
         - name: Process PCB Files
           run: |
             for i in *.kicad_pcb; do
