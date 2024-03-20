@@ -8,6 +8,7 @@ on:
 
 jobs:
     kicad-docker:
+      if: ${{ github.actor != 'github-actions[bot]' }}
       runs-on: ubuntu-latest
       container:
         image: kicad/kicad:7.0
@@ -31,7 +32,7 @@ jobs:
               [ -f "$i" ] || break
               file_name="$(echo $i | rev | cut -d '/' -f 1 | rev | cut -d '.' -f 1)"
               kicad-cli pcb export step --subst-models "$i"
-              # TODO: Upload Artifacts
+            
             done
             
         - name: Process SCH Files
@@ -40,6 +41,14 @@ jobs:
               [ -f "$i" ] || break
               echo "$i"
             done
+            
+        - name: Push Changes
+          run: |
+            git config --global user.name "github-actions[bot]"
+            git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add .
+            git commit -m "Updated Exports"
+            git push
             
     
         
