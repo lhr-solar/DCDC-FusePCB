@@ -31,7 +31,6 @@ jobs:
             directory="docs"
             if [ ! -d "$directory" ]; then
                 mkdir "$directory"
-            fi
         
         - name: Process PCB Files
           run: |
