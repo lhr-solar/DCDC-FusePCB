@@ -40,20 +40,21 @@ jobs:
               mkdir "$DIR"
             fi
             
-            
         - name: Process PCB Files
           run: |
             for i in *.kicad_pcb; do
               [ -f "$i" ] || break
               BASE_NAME="$(echo $i | rev | cut -d '/' -f 1 | rev | cut -d '.' -f 1)"
               kicad-cli pcb export step --subst-models -o "docs/$BASE_NAME.step" "$i"
+              kicad-cli pcb export pdf --ibt --ev --erd -o "docs/$BASE_NAME (PCB).pdf" "$i"
             done
             
         - name: Process SCH Files
           run: |
             for i in *.kicad_sch; do
               [ -f "$i" ] || break
-              echo "$i"
+              BASE_NAME="$(echo $i | rev | cut -d '/' -f 1 | rev | cut -d '.' -f 1)"
+              kicad-cli sch export pdf -o "docs/$BASE_NAME (SCH).pdf" "$i"
             done
             
         - name: Push Changes
