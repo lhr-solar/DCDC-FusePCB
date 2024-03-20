@@ -19,11 +19,10 @@ jobs:
 
     - name: Convert STEP to PNG
       run: |
-        # Assuming your STEP file is named model.step
-        freecadcmd -c 'import Import; Import.open("model.step"); Gui.activeDocument().activeView().saveImage("model.png", 1920, 1080, "Transparent")'
+        freecadcmd -c 'import Import; Import.open("docs/DCDC-FusePCB.step"); Gui.activeDocument().activeView().saveImage("model.png", 1920, 1080, "Transparent")'
 
     - name: Upload PNG artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: model-png
         path: model.png
