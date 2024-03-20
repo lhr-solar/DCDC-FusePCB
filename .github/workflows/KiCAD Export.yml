@@ -1,3 +1,6 @@
+# TODO: conflict resolution when pushing
+# TODO: refactor directories, kicad version, etc with ENV vars
+
 name: Export KiCAD Files
 
 on:
@@ -56,8 +59,7 @@ jobs:
               BASE_NAME="$(echo $i | rev | cut -d '/' -f 1 | rev | cut -d '.' -f 1)"
               kicad-cli sch export pdf -o "docs/$BASE_NAME (schematic).pdf" "$i"
             done
-
-        # add conflict resolution through git   
+            
         - name: Push Changes
           run: |
             git config --global user.name "github-actions[bot]"
