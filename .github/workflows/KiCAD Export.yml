@@ -1,4 +1,4 @@
-name: Auto KiCAD Export
+name: Export KiCAD
 
 on:
   push:
