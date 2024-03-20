@@ -30,7 +30,8 @@ jobs:
             cd ..
         
         - name: Make docs directory
-        - run: |
+          run: |
+            DIR="docs"
             if [ ! -d "$DIR" ]; then
               mkdir "$DIR"
             fi
