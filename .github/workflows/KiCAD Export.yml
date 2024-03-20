@@ -2,7 +2,11 @@ name: Auto KiCAD Export
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - 'main'
+    paths:
+      - '*.kicad_pcb'
+      - '*.kicad_sch'
 
   workflow_dispatch:
 
@@ -29,7 +33,7 @@ jobs:
             git checkout DCDC-FusePCB
             cd ..
         
-        - name: Make docs directory
+        - name: docs/ dir
           run: |
             DIR="docs"
             if [ ! -d "$DIR" ]; then
@@ -60,6 +64,3 @@ jobs:
             git add .
             git commit -m "Updated Exports"
             git push
-            
-    
-        
