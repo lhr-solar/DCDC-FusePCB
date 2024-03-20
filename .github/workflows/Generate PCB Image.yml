@@ -15,13 +15,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Convert STEP to PNG
+      - name: Run Python script
         run: |
-          cd docs
-          freecadcmd -c 'import Import; Import.open("DCDC-FusePCB.step"); Gui.activeDocument().activeView().saveImage("model.png", 1920, 1080, "Transparent")'
+          python ${{ github.action_path }}/convert_step_to_png.py "docs/DCDC-FusePCB.step" "model.png"
   
       - name: Upload PNG artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: model-png
           path: model.png
