@@ -54,7 +54,7 @@ jobs:
             for i in *.kicad_sch; do
               [ -f "$i" ] || break
               BASE_NAME="$(echo $i | rev | cut -d '/' -f 1 | rev | cut -d '.' -f 1)"
-              kicad-cli sch export pdf -o "docs/$BASE_NAME (SCH).pdf" "$i"
+              kicad-cli sch export pdf -o "docs/$BASE_NAME (schematic).pdf" "$i"
             done
             
         - name: Push Changes
