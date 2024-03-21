@@ -20,11 +20,11 @@ jobs:
           f3d/bin/f3d docs/DCDC-FusePCB.step --output "docs/DCDC-FusePCB.png"
 
       - name: Push Changes
-          run: |
-            git config --global user.name "github-actions[bot]"
-            git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git config --global --add safe.directory '*'
-            git add .
-            git commit -m "Updated PCB .png"
-            git push
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global --add safe.directory '*'
+          git add .
+          git commit -m "Updated PCB .png"
+          git push
           
