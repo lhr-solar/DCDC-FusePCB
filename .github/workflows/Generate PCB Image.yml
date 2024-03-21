@@ -15,10 +15,14 @@ jobs:
           wget -O f3d.tar.gz https://github.com/f3d-app/f3d/releases/download/v2.3.0/F3D-2.3.0-Linux-x86_64-raytracing.tar.gz
           mkdir f3d
           tar xzf f3d.tar.gz -C f3d
-          ls
 
       - name: Generate .png
         run: |
+          ls
+          cd f3d
+          ls
+          cd bin
+          ls
           ./f3d/bin/f3d docs/DCDC-FusePCB.step --output "docs/DCDC-FusePCB.png"
 
       - name: Push Changes
