@@ -4,18 +4,27 @@ on:
   workflow_dispatch:
 
 jobs:
-  freecad:
+  f3d:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         
-      - name: Install FreeCad
+      - name: Install f3d
         run: |
-          sudo apt update
-          sudo apt install freecad
+          wget -O f3d.tar.gz https://github.com/f3d-app/f3d/releases/download/v2.3.0/F3D-2.3.0-Linux-x86_64-raytracing.tar.gz
+          tar xzf f3d.tar.gz -C f3d
 
-      - name: FreeCAD CMD
+      - name: Generate .png
         run: |
-          freecad ${{ github.action_path }}/convert_step_to_png.py
+          f3d/bin/f3d docs/DCDC-FusePCB.step --output "docs/DCDC-FusePCB.png"
+
+      - name: Push Changes
+          run: |
+            git config --global user.name "github-actions[bot]"
+            git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git config --global --add safe.directory '*'
+            git add .
+            git commit -m "Updated PCB .png"
+            git push
           
