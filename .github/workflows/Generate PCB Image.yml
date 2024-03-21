@@ -14,3 +14,8 @@ jobs:
         run: |
           sudo apt update
           sudo apt install freecad
+
+      - name: FreeCAD CMD
+        run: |
+          freecad ${{ github.action_path }}/convert_step_to_png.py
+          
