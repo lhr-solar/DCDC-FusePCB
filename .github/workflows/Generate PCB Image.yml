@@ -5,10 +5,14 @@ on:
 
 jobs:
   f3d:
-    runs-on: ubuntu-latest
+    runs-on: dev-gpu-runner
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        
+      - name: Check GPU allocation
+        run: |
+            nvidia-smi
         
       - name: Install f3d
         run: |
