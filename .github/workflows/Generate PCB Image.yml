@@ -19,7 +19,7 @@ jobs:
 
       - name: Generate .png
         run: |
-          f3d/bin/f3d docs/DCDC-FusePCB.step --output "docs/DCDC-FusePCB.png"
+          ./f3d/bin/f3d docs/DCDC-FusePCB.step --output "docs/DCDC-FusePCB.png"
 
       - name: Push Changes
         run: |
