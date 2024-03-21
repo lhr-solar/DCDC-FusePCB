@@ -4,23 +4,13 @@ on:
   workflow_dispatch:
 
 jobs:
-  freeCAD-docker:
+  freecad:
     runs-on: ubuntu-latest
-
-    container:
-      image: linuxserver/freecad:latest
-      options: --user root
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Run Python script
+        
+      - name: Install FreeCad
         run: |
-          python ${{ github.action_path }}/convert_step_to_png.py "docs/DCDC-FusePCB.step" "model.png"
-  
-      - name: Upload PNG artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: model-png
-          path: model.png
+          sudo apt update
+          sudo apt install freecad
