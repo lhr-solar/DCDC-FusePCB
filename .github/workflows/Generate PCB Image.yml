@@ -15,7 +15,7 @@ jobs:
           sudo apt install libopengl0 -y
           wget -O /lib/local/f3d.tar.gz https://github.com/f3d-app/f3d/releases/download/v2.3.0/F3D-2.3.0-Linux-x86_64.tar.gz
           mkdir f3d
-          tar -xzf /lib/loca;/f3d.tar.gz -C /lib/local/f3d --strip-components=1
+          tar -xzf /lib/local/f3d.tar.gz -C /lib/local/f3d --strip-components=1
 
       - name: Generate .png
         run: |
