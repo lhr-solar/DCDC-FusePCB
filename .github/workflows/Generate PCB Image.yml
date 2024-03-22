@@ -18,6 +18,7 @@ jobs:
           sudo tar -xzf "/usr/local/f3d/f3d.tar.gz" -C "/usr/local/f3d" --strip-components=1
           export PATH="$PATH:/usr/local/f3d/bin"
           echo $PATH
+          source ~/.bashrc
 
       - name: Generate .png
         run: |
