@@ -12,7 +12,7 @@ jobs:
         
       - name: Install f3d
         run: |
-          sudo apt-get install libopengl0 libgl2-mesa-dev libglib2.0-0 -y
+          sudo apt-get install libgles2-mesa-dev -y
           sudo mkdir -p /usr/local/f3d
           sudo wget -O "/usr/local/f3d/f3d.tar.gz" https://github.com/f3d-app/f3d/releases/download/v2.3.0/F3D-2.3.0-Linux-x86_64-headless-raytracing.tar.gz
           sudo tar -xzf "/usr/local/f3d/f3d.tar.gz" -C "/usr/local/f3d" --strip-components=1
