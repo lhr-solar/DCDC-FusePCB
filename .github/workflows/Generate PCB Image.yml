@@ -20,7 +20,7 @@ jobs:
 
       - name: Generate .png
         run: |
-          /usr/local/f3d/bin/f3d "docs/DCDC-FusePCB.step" --no-render
+          f3d "docs/DCDC-FusePCB.step" --output "test.png"
 
       - name: Push Changes
         run: |
