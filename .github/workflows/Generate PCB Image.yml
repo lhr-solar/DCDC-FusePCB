@@ -20,9 +20,8 @@ jobs:
       - name: Run Mayo
         run: |
           ./mayo.AppImage docs/DCDC-FusePCB.step -e "./docs/DCDC-FusePCB.stl"
+          ./mayo.AppImage docs/DCDC-FusePCB.step -e "./docs/DCDC-FusePCB.stl"
           rm mayo.AppImage
-          ls
-          ls docs
           
       - name: Push Changes
         run: |
