@@ -20,7 +20,11 @@ jobs:
       - name: Run Mayo
         run: |
           ./mayo.AppImage docs/DCDC-FusePCB.step -e docs/DCDC-FusePCB.stl
-          timeout 10s ./mayo.AppImage docs/DCDC-FusePCB.step -e docs/DCDC-FusePCB.png || true
+          ./mayo.AppImage docs/DCDC-FusePCB.step -e docs/DCDC-FusePCB.png\
+          exit 0
+
+      - name: Delete Mayo
+        run: |
           rm mayo.AppImage
           
       - name: Push Changes
