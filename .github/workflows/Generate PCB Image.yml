@@ -19,8 +19,8 @@ jobs:
       
       - name: Run Mayo
         run: |
-          ./mayo.AppImage docs/DCDC-FusePCB.step -e "./docs/DCDC-FusePCB.stl"
-          ./mayo.AppImage docs/DCDC-FusePCB.step -e "./docs/DCDC-FusePCB.obj"
+          ./mayo.AppImage docs/DCDC-FusePCB.step -e docs/DCDC-FusePCB.stl
+          timeout 10s ./mayo.AppImage docs/DCDC-FusePCB.step -e docs/DCDC-FusePCB.png || true
           rm mayo.AppImage
           
       - name: Push Changes
