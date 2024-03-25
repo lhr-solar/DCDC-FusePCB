@@ -19,7 +19,7 @@ jobs:
       
       - name: Run Mayo
         run: |
-          ./mayo.AppImage docs/DCDC-FusePCB.step -e docs/DCDC-FusePCB.png
+          ./mayo.AppImage docs/DCDC-FusePCB.step -e docs/DCDC-FusePCB.stl
           
       - name: Push Changes
         if: '!cancelled()'
