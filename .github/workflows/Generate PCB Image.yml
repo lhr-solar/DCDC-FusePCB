@@ -23,6 +23,7 @@ jobs:
           ./mayo.AppImage docs/DCDC-FusePCB.step -e docs/DCDC-FusePCB.png
           
       - name: Push Changes
+        if: '!cancelled()'
         run: |
           if git diff-index --quiet HEAD --; then
             echo "No changes to commit. Exiting."
