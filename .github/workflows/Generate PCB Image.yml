@@ -25,7 +25,7 @@ jobs:
       - name: Run f3d with Xvfb
         run: |
           export DISPLAY=:1
-          f3d "docs/DCDC-FusePCB.step" --output "docs/test.png"
+          f3d "docs/DCDC-FusePCB.step" --output "docs/test.png" --verbose
 
       - name: Push Changes
         run: |
