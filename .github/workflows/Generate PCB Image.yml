@@ -4,31 +4,32 @@ on:
   workflow_dispatch:
 
 jobs:
-  f3d:
+  mayo:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         
-      - name: Install Dependencis
+      - name: Install Dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install xvfb libopengl0 xvfb x11-apps -y
-          sudo mkdir -p /usr/local/f3d
-          cd /usr/local/f3d
-          sudo wget -O "./f3d.tar.gz" https://github.com/f3d-app/f3d/releases/download/v2.3.0/F3D-2.3.0-Linux-x86_64-raytracing.tar.gz
-          sudo tar -xzf "f3d.tar.gz" -C "./" --strip-components=1
+          sudo apt-get install libfuse2 xvfb -y
+          wget -O ./mayo.AppImage https://github.com/fougue/mayo/releases/download/v0.8.0/Mayo-0.8.0-x86_64.AppImage
+          chmod a+x mayo.AppImage
 
       - name: Start Xvfb
-        run: Xvfb :1 -screen 0 1024x768x16 -noreset -nolisten tcp &
+        run: |
+          xvfb :1 -screen 0 1024x768x16 -noreset -nolisten tcp &
       
-      - name: Run f3d with Xvfb
+      - name: Run Mayo with Xvfb
         run: |
           export DISPLAY=:1     
-          /usr/local/f3d/bin/f3d "docs/DCDC-FusePCB.step" --output "docs/test.png" --verbose
-          /usr/local/f3d/bin/f3d "docs/DCDC-FusePCB.step"
-          xwd -display :1 -root -silent | convert xwd:- png:docs/screenshot.png
+          ./mayo.AppImage docs/DCDC-FusePCB.step -s ${{ github.action_path }}/mayo-config.ini -e docs/DCDC-FusePCB.png
 
+      - name: Kill xvfb
+        run: |
+          killall xvfb
+        
       - name: Push Changes
         run: |
           if git diff-index --quiet HEAD --; then
