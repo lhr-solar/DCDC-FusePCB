@@ -24,7 +24,7 @@ jobs:
       - name: Run Mayo with Xvfb
         run: |
           export DISPLAY=:1     
-          ./mayo.AppImage docs/DCDC-FusePCB.step -s ${GITHUB_ACTION_PATH}/mayo-config.ini -e docs/DCDC-FusePCB.png
+          ./mayo.AppImage docs/DCDC-FusePCB.step -s ".github/workflows/mayo-config.ini" -e docs/DCDC-FusePCB.png
 
       - name: Kill xvfb
         run: |
