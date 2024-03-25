@@ -18,7 +18,7 @@ jobs:
           chmod a+x mayo.AppImage
       
       - name: Run Mayo
-        timeout-minutes: 0.5
+        timeout-minutes: 1
         run: |
           ./mayo.AppImage docs/DCDC-FusePCB.step -e docs/DCDC-FusePCB.png
           
