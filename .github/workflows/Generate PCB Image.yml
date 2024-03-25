@@ -19,10 +19,13 @@ jobs:
           sudo wget -O "./f3d.deb" https://github.com/f3d-app/f3d/releases/download/v2.3.0/F3D-2.3.0-Linux-x86_64.deb
           sudo dpkg -i f3d.deb
 
-      - name: Generate .png
+      - name: Start Xvfb
+        run: Xvfb :1 -screen 0 1024x768x16 -noreset -nolisten tcp &
+      
+      - name: Run f3d with Xvfb
         run: |
-          Xvfb :1 -screen 0 1600x1200x24 & f3d "docs/DCDC-FusePCB.step" --output "docs/test.png" --verbose
-          killall Xvfb
+          export DISPLAY=:1
+          f3d "docs/DCDC-FusePCB.step" --output "docs/test.png"
 
       - name: Push Changes
         run: |
