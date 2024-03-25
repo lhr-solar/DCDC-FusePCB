@@ -16,16 +16,10 @@ jobs:
           sudo apt-get install libfuse2 xvfb -y
           wget -O ./mayo.AppImage https://github.com/fougue/mayo/releases/download/v0.8.0/Mayo-0.8.0-x86_64.AppImage
           chmod a+x mayo.AppImage
-
-      - name: Start Xvfb
-        run: |
-          xvfb :1 -screen 0 1024x768x16 -noreset -nolisten tcp &
       
       - name: Run Mayo with Xvfb
         run: |
-          export DISPLAY=:1     
           ./mayo.AppImage docs/DCDC-FusePCB.step -s ".github/workflows/mayo-config.ini" -e docs/DCDC-FusePCB.png --debug-logs
-          killall xvfb
           
       - name: Push Changes
         run: |
