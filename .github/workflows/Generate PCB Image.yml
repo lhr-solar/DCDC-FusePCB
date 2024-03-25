@@ -16,8 +16,8 @@ jobs:
           sudo apt install xvfb libopengl0
           sudo mkdir -p /usr/local/f3d
           cd /usr/local/f3d
-          sudo wget -O "./f3d.deb" https://github.com/f3d-app/f3d/releases/download/v2.3.0/F3D-2.3.0-Linux-x86_64-raytracing.deb
-          sudo dpkg -i f3d.deb
+          sudo wget -O "./f3d.tar.gz" https://github.com/f3d-app/f3d/releases/download/v2.3.0/F3D-2.3.0-Linux-x86_64-raytracing.tar.gz
+          tar -xzf "f3d.tar.gz" -C "./" --strip-components=1
 
       - name: Start Xvfb
         run: Xvfb :1 -screen 0 1024x768x16 -noreset -nolisten tcp &
@@ -25,7 +25,7 @@ jobs:
       - name: Run f3d with Xvfb
         run: |
           export DISPLAY=:1
-          f3d "docs/DCDC-FusePCB.step" --output "docs/test.png" --verbose
+          /usr/local/f3d/bin/f3d "docs/DCDC-FusePCB.step" --output "docs/test.png" --verbose
 
       - name: Push Changes
         run: |
