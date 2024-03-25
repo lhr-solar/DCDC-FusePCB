@@ -10,17 +10,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         
-      - name: Install f3d
+      - name: Install Dependencis
         run: |
-          sudo apt-get install libgles2-mesa -y
+          sudo apt update
+          sudo apt install xvfb
           sudo mkdir -p /usr/local/f3d
           cd /usr/local/f3d
-          sudo wget -O "./f3d.deb" https://github.com/f3d-app/f3d/releases/download/v2.3.0/F3D-2.3.0-Linux-x86_64-headless.deb
+          sudo wget -O "./f3d.deb" https://github.com/f3d-app/f3d/releases/download/v2.3.0/F3D-2.3.0-Linux-x86_64.deb
           sudo dpkg -i f3d.deb
 
       - name: Generate .png
         run: |
+          Xvfb :1 -screen 0 1600x1200x24 &
           f3d "docs/DCDC-FusePCB.step" --output "docs/test.png" --verbose
+          killall Xvfb
 
       - name: Push Changes
         run: |
