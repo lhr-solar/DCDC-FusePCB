@@ -26,6 +26,7 @@ jobs:
         run: |
           export DISPLAY=:1     
           /usr/local/f3d/bin/f3d "docs/DCDC-FusePCB.step" --output "docs/test.png" --verbose
+          /usr/local/f3d/bin/f3d "docs/DCDC-FusePCB.step"
           xwd -display :1 -root -silent | convert xwd:- png:docs/screenshot.png
 
       - name: Push Changes
