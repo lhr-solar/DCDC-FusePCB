@@ -21,8 +21,7 @@ jobs:
 
       - name: Generate .png
         run: |
-          Xvfb :1 -screen 0 1600x1200x24 &
-          f3d "docs/DCDC-FusePCB.step" --output "docs/test.png" --verbose
+          Xvfb :1 -screen 0 1600x1200x24 & f3d "docs/DCDC-FusePCB.step" --output "docs/test.png" --verbose
           killall Xvfb
 
       - name: Push Changes
