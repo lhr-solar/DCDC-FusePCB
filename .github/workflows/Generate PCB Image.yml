@@ -20,7 +20,7 @@ jobs:
       - name: Run Mayo
         run: |
           ./mayo.AppImage docs/DCDC-FusePCB.step -e docs/DCDC-FusePCB.stl
-          ./mayo.AppImage docs/DCDC-FusePCB.step -e docs/DCDC-FusePCB.png\
+          ./mayo.AppImage docs/DCDC-FusePCB.step -e docs/DCDC-FusePCB.png
           exit 0
 
       - name: Delete Mayo
