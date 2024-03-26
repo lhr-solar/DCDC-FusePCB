@@ -5,21 +5,27 @@ on:
 
 jobs:
   mayo:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         
       - name: Install Dependencies
         run: |
+          sudo apt-get update
+          sudo apt-get install libfuse2 xvfb
           wget -O ./mayo.AppImage https://github.com/fougue/mayo/releases/download/v0.8.0/Mayo-0.8.0-x86_64.AppImage
           chmod a+x mayo.AppImage
+
+      - name: Start Xvfb
+        run: |
+          xvfb :1 -screen 0 1024x768x16 -noreset -nolisten tcp &
       
       - name: Run Mayo
         run: |
+          export DISPLAY=:1
           ./mayo.AppImage docs/DCDC-FusePCB.step -e docs/DCDC-FusePCB.stl
           ./mayo.AppImage docs/DCDC-FusePCB.step -e docs/DCDC-FusePCB.png
-          exit 0
 
       - name: Delete Mayo
         run: |
