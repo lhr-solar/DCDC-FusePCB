@@ -27,6 +27,13 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v4
 
+        - name: Install Dependencies
+          run: |
+            sudo apt-get update
+            sudo apt-get install libfuse2
+            wget -O ./mayo.AppImage https://github.com/fougue/mayo/releases/download/v0.8.0/Mayo-0.8.0-x86_64.AppImage
+            chmod a+x mayo.AppImage
+
         - name: Clone Submodule
           run: git clone https://github.com/lhr-solar/UTSVT-KiCadLibraries.git
 
@@ -36,7 +43,7 @@ jobs:
             git checkout DCDC-FusePCB
             cd ..
         
-        - name: docs/ dir
+        - name: Create Docs Directory
           run: |
             DIR="docs"
             if [ ! -d "$DIR" ]; then
@@ -57,19 +64,23 @@ jobs:
             for i in *.kicad_sch; do
               [ -f "$i" ] || break
               BASE_NAME="$(echo $i | rev | cut -d '/' -f 1 | rev | cut -d '.' -f 1)"
-              kicad-cli sch export pdf -o "docs/$BASE_NAME (schematic).pdf" "$i"
+              kicad-cli sch export pdf -o "docs/$BASE_NAME.pdf" "$i"
             done
+
+        - name: Process STEP Outputs
+          run: |
+            ./mayo.AppImage docs/DCDC-FusePCB.step -e docs/DCDC-FusePCB.stl
+            ./mayo.AppImage docs/DCDC-FusePCB.step -e docs/DCDC-FusePCB.png
+
+        - name: Remove Dependencies
+          run: |
+            rm mayo.AppImage
             
         - name: Push Changes
           run: |
-            if git diff-index --quiet HEAD --; then
-              echo "No changes to commit. Exiting."
-              exit 0
-            else
-              git config --global user.name "github-actions[bot]"
-              git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-              git config --global --add safe.directory '*'
-              git add .
-              git commit -m "Updated Exports"
-              git push
-            fi
+            git config --global user.name "github-actions[bot]"
+            git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git config --global --add safe.directory '*'
+            git add .
+            git commit -m "Updated Exports"
+            git push
