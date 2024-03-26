@@ -5,15 +5,13 @@ on:
 
 jobs:
   mayo:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         
       - name: Install Dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install libfuse2 -y
           wget -O ./mayo.AppImage https://github.com/fougue/mayo/releases/download/v0.8.0/Mayo-0.8.0-x86_64.AppImage
           chmod a+x mayo.AppImage
       
