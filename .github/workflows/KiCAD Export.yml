@@ -14,7 +14,7 @@ on:
   workflow_dispatch:
 
 jobs:
-    kicad-docker:
+    kicad-mayo-docker:
       if: ${{ github.actor != 'github-actions[bot]' }}
       
       runs-on: ubuntu-latest
@@ -30,12 +30,13 @@ jobs:
         - name: Install Dependencies
           run: |
             sudo apt-get update
-            sudo apt-get install libfuse2 wget
+            sudo apt-get install libfuse2 xvfb -y
             wget -O ./mayo.AppImage https://github.com/fougue/mayo/releases/download/v0.8.0/Mayo-0.8.0-x86_64.AppImage
             chmod a+x mayo.AppImage
 
         - name: Clone Submodule
-          run: git clone https://github.com/lhr-solar/UTSVT-KiCadLibraries.git
+          run: |
+            git clone https://github.com/lhr-solar/UTSVT-KiCadLibraries.git
 
         - name: Checkout Submodule Branch
           run: |
@@ -68,9 +69,13 @@ jobs:
             done
 
         - name: Process STEP Outputs
+          env:
+            DISPLAY: :0
           run: |
+            Xvfb $DISPLAY -screen 0 1280x1024x24 &
+            sleep 5s
             ./mayo.AppImage docs/DCDC-FusePCB.step -e docs/DCDC-FusePCB.stl
-            ./mayo.AppImage docs/DCDC-FusePCB.step -e docs/DCDC-FusePCB.png
+            ./mayo.AppImage -s ".github/workflows/mayo-config.ini" docs/DCDC-FusePCB.step -e docs/DCDC-FusePCB.png
 
         - name: Remove Dependencies
           run: |
