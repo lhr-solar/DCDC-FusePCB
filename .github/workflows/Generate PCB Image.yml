@@ -22,9 +22,9 @@ jobs:
           DISPLAY: :0
         run: |
           Xvfb $DISPLAY -screen 0 1280x1024x24 &
-          sleep 5s # Maybe not needed
+          sleep 5s
           ./mayo.AppImage docs/DCDC-FusePCB.step -e docs/DCDC-FusePCB.stl
-          ./mayo.AppImage -s ${GITHUB_ACTION_PATH}/mayo-config.ini docs/DCDC-FusePCB.step -e docs/DCDC-FusePCB.png
+          ./mayo.AppImage -s ".github/workflows/mayo-config.ini" docs/DCDC-FusePCB.step -e docs/DCDC-FusePCB.png
 
       - name: Delete Mayo
         run: |
