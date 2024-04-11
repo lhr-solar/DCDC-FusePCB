@@ -18,6 +18,10 @@ jobs:
       if: ${{ github.actor != 'github-actions[bot]' }}
       
       runs-on: ubuntu-latest
+
+      container:
+        image: kicad/kicad:7.0
+        options: --user root --privileged
         
       steps:
         - name: Checkout
@@ -25,9 +29,8 @@ jobs:
 
         - name: Install Dependencies
           run: |
-            sudo add-apt-repository ppa:kicad/kicad-7.0-releases
             sudo apt-get update
-            sudo apt-get install xvfb wget libfuse2 kicad
+            sudo apt-get install xvfb wget libfuse2
             wget -O ./mayo.AppImage https://github.com/fougue/mayo/releases/download/v0.8.0/Mayo-0.8.0-x86_64.AppImage
             chmod a+x mayo.AppImage
 
