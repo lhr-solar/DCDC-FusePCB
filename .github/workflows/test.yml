@@ -6,6 +6,11 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    
+    container:
+        image: kicad/kicad:7.0
+        options: --user root --privileged
+        
     steps:
       - uses: actions/checkout@v4
       - uses: parthivs20/kicad-exporter@v1.0
