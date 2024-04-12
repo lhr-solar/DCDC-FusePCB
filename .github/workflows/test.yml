@@ -17,3 +17,4 @@ jobs:
             png
             stl
             step
+          out-dir: './docs'
