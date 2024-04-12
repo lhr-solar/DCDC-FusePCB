@@ -6,13 +6,13 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    
-    container:
-        image: kicad/kicad:7.0
-        options: --user root --privileged
         
     steps:
       - uses: actions/checkout@v4
+      - run: |
+          sudo add-apt-repository ppa:kicad/kicad-7.0-releases
+          sudo apt-get update
+          sudo apt-get install kicad
       - uses: parthivs20/kicad-exporter@v1.0
         with:
           out-files: |
