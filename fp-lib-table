@@ -7,4 +7,5 @@
   (lib (name "UTSVT_Power")(type "KiCad")(uri "${KIPRJMOD}/UTSVT-KiCadLibraries/UTSVT_Power.pretty")(options "")(descr ""))
   (lib (name "UTSVT_Special")(type "KiCad")(uri "${KIPRJMOD}/UTSVT-KiCadLibraries/UTSVT_Special.pretty")(options "")(descr ""))
   (lib (name "Graphics")(type "KiCad")(uri "${KIPRJMOD}/Graphics.pretty")(options "")(descr "")(disabled))
+  (lib (name "CustomFootprints")(type "KiCad")(uri "${KIPRJMOD}/Custom-KiCad Libraries/CustomFootprints.pretty")(options "")(descr ""))
 )
